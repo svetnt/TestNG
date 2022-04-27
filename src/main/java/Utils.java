@@ -6,8 +6,12 @@ public class Utils {
 
         String[] arr1s = {"Russ", "Turk", "German", "China"};
         int[] arr1 = {3, 2, 7, 5, 1, 9, 23, 1};
-        int[] arr2 = {8, 9, 4, 2};
-        System.out.println(Arrays.toString(ReverseArray(arr2)));
+        int[] arr2 = {2};
+       try {
+           System.out.println(Arrays.toString(PeakElement(arr2)));
+       } catch (IllegalArgumentException e){
+           System.out.println(e.getMessage());
+       }
 
     }
 
@@ -63,10 +67,10 @@ public class Utils {
    значения пиковых элементов (элементы, которые больше своих соседей).
     Test Data:{3, 2, 7, 5, 1, 9, 23, 1} → {3, 7, 23}*/
 
-    public static Integer[] PeakElement(int[] arr) {
+    public static Integer[] PeakElement(int[] arr) throws IllegalArgumentException{
+        if(arr.length<2) throw new IllegalArgumentException ("Массив должен состоять более чем из 1 элемента");
         ArrayList<Integer> list = new ArrayList<Integer>();
-        try {
-            if (arr[0] > arr[1]) {
+        if (arr[0] > arr[1]) {
                 list.add(arr[0]);
             }
             for (int i = 1; i < arr.length - 1; i++) {
@@ -80,45 +84,29 @@ public class Utils {
             Integer[] rezult = new Integer[list.size()];
             list.toArray(rezult);
             return rezult;
-        } catch (Exception e) {
-            System.out.println("Ошибка данных");
-            return null;
-        }
     }
 
     /*11. Написать алгоритм ReverseArray, который принимает на вход массив целых чисел, и возвращает
      “перевернутый” массив. Test Data:{2, 7, 3, 10} → {10, 3, 7, 2}*/
-    public static int[] ReverseArray(int[] arr) {
+    public static int[] ReverseArray(int[] arr){
         int[] rezult = new int[arr.length];
         int j = 0;
-        try {
-            for (int i = arr.length - 1; i >= 0; i--) {
+        for (int i = arr.length - 1; i >= 0; i--) {
                 rezult[j] = arr[i];
                 j++;
             }
             return rezult;
-        } catch (Exception e) {
-            System.out.println("Ошибка данных");
-            return null;
-        }
     }
 
-    public static String searshIndex(String[] arr, int ind) {
-        try {
-            return arr[ind];
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            return "выход за пределы массива";
-        }
+    public static String searshIndexS(String[] arr, int ind) throws ArrayIndexOutOfBoundsException {
+        return arr[ind];
     }
 
     public static int searshIndex(int[] arr, int ind) throws ArrayIndexOutOfBoundsException {
-        try {
-            return arr[ind];
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            System.out.println("выход за пределы массива");
-            return 0;
-        }
+        return arr[ind];
     }
 
-
 }
+
+
+
